@@ -10,6 +10,7 @@ const Pretandard = localFont({
 export const metadata: Metadata = {
   title: "Dalpeng's World",
   description: "My world!",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
