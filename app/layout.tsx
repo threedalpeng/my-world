@@ -1,11 +1,13 @@
 import "./globals.css";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/react";
+import { Metadata } from "next";
 
-const myFont = localFont({
+const Pretandard = localFont({
   src: "./assets/fonts/Pretandard/woff2/PretendardVariable.woff2",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Dalpeng's World",
   description: "My world!",
 };
@@ -17,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={myFont.className}>
+      <body className={Pretandard.className}>
         {children}
         <Analytics />
       </body>
