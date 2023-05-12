@@ -17,7 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={myFont.className}>{children}</body>
+      <body className={myFont.className}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
