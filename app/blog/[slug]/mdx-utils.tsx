@@ -6,6 +6,7 @@ import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import remarkToc from "remark-toc";
+import Callout from "../components/Callout";
 import PaperClipIcon from "./PaperClipIconForHast";
 import Link from "next/link";
 
@@ -37,6 +38,7 @@ export function compileBlogMDX(markdown: string) {
       parseFrontmatter: true,
     },
     components: {
+      Callout,
       a: ({ children, href, ...props }) => {
         if (href?.startsWith("#")) {
           return (
