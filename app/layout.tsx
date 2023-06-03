@@ -5,6 +5,13 @@ import { Metadata } from "next";
 
 const Pretandard = localFont({
   src: "./assets/fonts/Pretandard/woff2/PretendardVariable.woff2",
+  display: "swap",
+  variable: "--font-pretandard",
+});
+const D2Coding = localFont({
+  src: "./assets/fonts/D2Coding/D2Coding.woff2",
+  display: "swap",
+  variable: "--font-d2coding",
 });
 
 export const metadata: Metadata = {
@@ -20,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={Pretandard.className}>
+      <body className={`${Pretandard.variable} ${D2Coding.variable}`}>
         {children}
         <Analytics />
       </body>
