@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./assets/theme/prism/prism-material-oceanic.css";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
