@@ -1,14 +1,23 @@
 ---
-title: 이 블로그를 어떻게 만들었나 (feat. Next.js & MDX)
-subtitle: 행복하다
-tag: Next.js, MDX, blog, frontend, react, SSG
+title: 이 블로그를 어떻게 만들었나
+subtitle: (feat. Next.js 13 & MDX)
+tag:
+  - Next.js 13
+  - MDX
+  - blog
+  - Frontend
+  - React
+  - SSG
 ---
 
 # 목차
 
 # 어쩌다 블로그를 만들었나
 
-> 블로그 구현 방법만 보고 싶으신 분은 [아래](#nextjs와-mdx로-블로그-구현하기)로 넘겨주세요.
+<Callout>
+  블로그 구현 방법만 보고 싶으신 분은 [아래](#nextjs와-mdx로-블로그-구현하기)로
+  넘겨주세요.
+</Callout>
 
 ## 블로그에 글을 쓰고 싶어
 
@@ -54,7 +63,7 @@ tag: Next.js, MDX, blog, frontend, react, SSG
 > - 이거 한 번 만들면 개발 & 유지보수 평생 컨텐츠 아니냐?
 > - 만들면 배우는 것도 생기고 배우면 글 쓸 것도 생기겠지.
 
-어느새 제 계획은 **나만의 개인 홈페이지**로 커지게 되었습니다.
+종합하자면, 낭만(!)이라 할 수 있겠습니다. 어느새 제 계획은 **나만의 개인 홈페이지**로 커지게 되었습니다.
 
 ## 왜 풀스택 프레임워크로?
 
@@ -63,17 +72,17 @@ tag: Next.js, MDX, blog, frontend, react, SSG
 새로운 프로젝트에는 [풀스택 프레임워크를 사용하는 것을 추천](https://react.dev/learn/start-a-new-react-project)하기까지 하더군요.
 
 사실 이런 풀스택 프레임워크들을 군대에 있을 동안에도 사용해보고 싶었으나,
-개인적으로 하던 프로젝트들이 워낙 클라이언트 측 작업이 많아서 SSR이나 SSG로 이득볼 부분이 없기도 했고,
+개인적으로 하던 프로젝트들이 워낙 클라이언트 측 작업이 많아서 *SSR*이나 *SSG*로 이득볼 부분이 없기도 했고,
 로컬 작업이 어려운 싸지방 탓에 개인 서버에 [code-server](https://github.com/coder/code-server) 올려서 원격으로 개발하는 과정에서
 프록시 문제 해결하는 것도 귀찮은 일인지라 손을 놓았습니다.
-실제로 기존에 Svelte로 진행하던 프로젝트를 [SvelteKit](https://kit.svelte.dev/)으로 한 번 굴려보려고 했지만
+실제로 기존에 *Svelte*로 진행하던 프로젝트를 [SvelteKit](https://kit.svelte.dev/)으로 한 번 굴려보려고 했지만
 개발 모드 켜서 원격으로 개발 중인 페이지를 확인하는 과정에 문제가 있었습니다.
 그렇게 동작에 실패한 후로 다른 거나 열심히 하자고 생각하고는 관심을 끊었습니다.
 
 어느덧 시간이 흐르고 전역을 하니, 이제 자유의 몸도 됐겠다, 자유롭고 개인적인 개발 환경에서 새로운 도전을 할 수 있게 되었습니다.
 위에서 말했던 대로 블로그 겸 웹사이트를 만들 생각을 하니, 그제서야 풀스택 프레임워크가 눈에 들어왔습니다.
 
-- 여러 Docs 페이지에서 마크다운을 SSG로 페이지로 빌드해 배포하던 것을 블로그에도 똑같이 할 수 있겠다 싶었고,
+- 여러 Docs 페이지에서 마크다운을 *SSG*로 페이지로 빌드해 배포하던 것을 블로그에도 똑같이 할 수 있겠다 싶었고,
 - 나중에 내가 관심있는 기술들로 웹사이트 기능을 확장하기도 편리할 것 같고,
 - 역시 새로운 기술을 다루며 배우는 것이 짜릿하다!
 
@@ -82,21 +91,505 @@ tag: Next.js, MDX, blog, frontend, react, SSG
 ## 왜 Next.js로?
 
 세상에 다양한 풀스택 프레임워크가 있는 와중에, 약간 기술 스택 홍머병(?) 기질이 있는 제가 원래 써보려던 것은 [Remix](https://remix.run)였습니다.
-비교적 깔끔하고 간단해 보이는 프레임워크 구조와, Remix의 장점을 보여주는 현란한 랜딩 페이지, 그리고 큰 그림을 훑듯 기본 구조부터 DB 연결까지 한 번에 보여주는 튜토리얼까지.
+비교적 깔끔하고 간단해 보이는 프레임워크 구조와, *Remix*의 장점을 보여주는 현란한 랜딩 페이지, 그리고 큰 그림을 훑듯 기본 구조부터 DB 연결까지 한 번에 보여주는 튜토리얼까지.
 처음 사용하는 입장에서 오히려 익히기 쉬울 것 같아 마음이 끌렸습니다.
 어차피 개인 프로젝트인데 사람들이 많이 쓰는 것을 신경쓰지는 않아도 되겠다 싶었던 부분도 있습니다.
 
-그럼에도 결국 Next.js로 고개를 돌리게 되었습니다.
-긴 역사와 큰 개발자 커뮤니티로 다른 프레임워크를 눌러버린 React마냥, Next.js도 현재 정상에 위치한 그 힘을 무시할 수 없었습니다.
+그럼에도 결국 *Next.js*로 고개를 돌리게 되었습니다.
+긴 역사와 큰 개발자 커뮤니티로 다른 프레임워크를 눌러버린 *React*마냥, *Next.js*도 현재 정상에 위치한 그 힘을 무시할 수 없었습니다.
 역시 살짝만 검색해도 이것저것 다 나오고, 지원하는 기능도 많은 것이 눈에 뜁니다.
-무엇보다도 최근 들어 협업 프로젝트에 참여하게 되면서 따로 Next.js를 학습해야할 일이 생긴 것이 가장 컸습니다.
+무엇보다도 최근 들어 협업 프로젝트에 참여하게 되면서 따로 *Next.js*를 학습해야할 일이 생긴 것이 가장 컸습니다.
 
-+) Remix는 공식적으로 [Remix Stack](https://remix.run/docs/en/main/pages/stacks)이라는, 빠른 개발 시작을 위한 템플릿을 지원합니다.
+*Remix*는 공식적으로 [Remix Stack](https://remix.run/docs/en/main/pages/stacks)이라는, 빠른 개발 시작을 위한 템플릿을 지원합니다.
 혹시 빠르게 DB와 각종 테스트 도구까지 붙여서 개발해야 할 일이 있다면 쓰게 될지 모르겠습니다.
 
 # Next.js와 MDX로 블로그 구현하기
 
-처음 Next.js를 다루기 위해 예시들을 찾아보다 약간
+<Callout>
+  본 문서는 *Next.js 13*과 App Router를 바탕으로 설명합니다. 또한 스타일링을
+  위해 *Tailwind CSS*에 *Daisy UI*를 함께 사용하고 있습니다.
+</Callout>
 
-remark: in Markdown
-rehype: in HTML
+원하는 목표를 이루기 위해 열심히 배우고 조사한 결과 이 주제에 대해 다루는 포스트는 이미 아주 많았습니다.
+하지만 보통 작년 이전에 쓰인 포스트들이었으며, 그 때는 App Router가 아닌 Page Router를 사용하던 시절이었습니다.
+이렇게 블로그를 만들고, 다른 기능도 추가하면서 참고하던 많은 자료들 속 코드를 그대로 복붙하면 당연히 제대로 돌아갈 리가 없었습니다.
+어쩌다보니 _Next.js_ 첫걸음부터 공식 문서 보면서 마이그레이션을 하게 되었습니다;;
+
+## 블로그 포스트를 만들어보자
+
+### 블로그 페이지 만들기
+
+Next.js는 파일 기반 라우팅을 채택했습니다. 또한 App Router에서는 폴더의 구조로 URL 경로를 나타내며,
+해당 경로에 대한 페이지를 만들기 위해서는 `page.js` 파일을 만들어주어야 합니다. 물론 `.ts`나 `.tsx`와 같은 확장자도 좋습니다.
+마찬가지로, 하위 경로의 페이지들과 공유하는 레이아웃을 설정하기 위한 `layout.js` 등 이외에도 여러가지 [특별한 파일 이름](https://nextjs.org/docs/app/building-your-application/routing#file-conventions)이 존재합니다.
+
+이제 블로그 포스트를 위한 경로를 구상해봅시다. 저는 `/blog` 경로 밑에 다양한 포스트들을 추가하려 합니다.
+이때 JSX이나 HTML 파일에 이 긴 글을 태그까지 감싸가면서 열심히 적어야 한다면 제가 당장 글쓰기를 포기할 수 있기 때문에,
+마크다운 문서 따로 작성한 후 이를 가져와서 렌더링해주는 방식을 생각해봅니다.
+단순히 생각하면 포스트 하나에 대해 폴더 하나를 추가하여 경로를 생성해주면 됩니다.
+이후 그에 맞는 page 파일과 마크다운 문서를 하나씩 만들어주겠습니다.
+
+```plain
+/blog
+    /my-first-post
+        page.tsx
+        post.md
+    /another-post
+        page.tsx
+        post.md
+    layout.tsx
+```
+
+이제 포스트 하나를 작성할 때마다 폴더(와 page 파일과 마크다운 문서)를 하나씩 추가하면 되겠습니다...
+
+당연히 이 방법은 좋지 않아 보입니다.
+우선 마크다운을 가져와 포스트로 보여주는 기능이 동일한 이상 page 파일의 내용이 다를 경우가 없을 거라 예상됩니다.
+혹시라도 페이지에 적용할 기능에 변경이 생기기라도 하면 모든 page 파일에 변경사항을 적용해줘야 할테니 곤혹일 것입니다.
+그렇다면 동일한 페이지 파일을 사용하면서, 경로만 다양하게 만들어 줄 순 없을까요?
+Next.js에서는, 이를 위해 폴더의 이름을 대괄호([])로 감싸 동적인 경로를 생성할 수 있습니다.
+
+```plain
+/blog
+    /[slug]
+        page.tsx
+    /md
+        my-first-post.md
+        another-post.md
+    layout.tsx
+```
+
+이제 경로는 `/blog/[slug]`가 되고, `[slug]`에 해당하는 단어는 페이지 컴포넌트에 파라미터의 형태로 넘어가게 됩니다.
+예를 들어, 접근한 경로가 `/blog/nextjs`라면, 아래 코드에서 `params.slug`의 값이 `nextjs`로 들어갈 것입니다.
+
+```tsx
+export default function Page({ params }: { params: { slug: string } }) {
+  return <h1>My Page</h1>;
+}
+```
+
+이제 `params.slug` 값을 통해 해당하는 마크다운 문서를 가져온 후, 페이지에 렌더링하면 됩니다.
+
+### MDX로 마크다운 문서 가져오기
+
+Next.js 공식 문서에서 소개하는 [마크다운 적용 가이드](https://nextjs.org/docs/app/building-your-application/configuring/mdx)가 *MDX*를 활용합니다.
+여기에 더해 관련 패키지인 `@next/mdx`를 공식적으로 지원합니다. 이를 사용하면 mdx 파일을 `import`문을 써서 바로 불러올 수도 있고,
+옵션을 설정하여 바로 접근할 수 있는 페이지([Top level pages](https://github.com/vercel/next.js/tree/canary/packages/next-mdx#top-level-mdx-pages))로 만들어 낼 수 있습니다.
+
+하지만 `[slug]`를 통해 페이지에 접근하고 마크다운 파일에 메타데이터도 기록하여 사용함과 동시에 훗날 추가적인 기능을 계속 덧붙이고 싶은 입장에서 다른 접근방법을 알아보았습니다.
+그렇게 이번 개발에서는 `next-mdx-remote` 라이브러리를 사용하기로 결정했습니다.
+*Next.js*에서 *React Server Component(RSC)*를 적용하기 시작하면서, 해당 라이브러리도 그에 맞는 API를 불안정(unstable)하게 제공하고 있습니다.
+이 경우 클라이언트에서만 가능하거나 SSR에서는 필요없는 기능(Context, lazy 등)이 존재하기 때문에 사용법에도 약간의 변경사항이 존재합니다.
+당연히 저는 최신 메타를 선호하기에 rsc 방식을 사용할 겁니다.
+
+더불어, 마크다운 컨텐츠를 그대로 집어넣어서 사용 가능한 `<MDXRemote />` 컴포넌트를 사용할 수도 있지만,
+_Frontmatter_ 메타데이터도 외부에서 접근하고 커스터마이징도 수월하게 하고 싶어 `compileMDX` 함수를 사용하겠습니다.
+마크다운 컨텐츠를 가져오는 것은 *Node.js*의 [File System(`fs`)](https://nodejs.org/api/fs.html)를 활요하면 됩니다.
+
+```tsx
+import { readFileSync } from "fs";
+import { compileMDX } from "next-mdx-remote/rsc";
+
+const MD_DIR = path.resolve("app", "blog", "md");
+
+export default async function BlogPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = params;
+  const markdown = readFileSync(path.resolve(MD_DIR, `${slug}.mdx`), {
+    encoding: "utf-8",
+  });
+  const { content } = await compileMDX({ source: markdown });
+
+  return (
+    <main>
+      <article>{content}</article>
+    </main>
+  );
+}
+```
+
+### Static Rendering (SSG, ISR)
+
+*App Router*에서 구분하는 [렌더링 방식](https://nextjs.org/docs/app/building-your-application/rendering)은 크게 두 가지 입니다.
+
+1. Static Rendering: 서버 및 클라이언트 컴포넌트가 **빌드 시간**에 미리 렌더링(prerender)됩니다.
+2. Dynamic Rendering: 서버 및 클라이언트 컴포넌트가 **요청 시간**에 서버에서 렌더링됩니다.
+
+아직까지 제가 만든 페이지는 둘 중 *Dynamic Rendering*에 해당합니다.
+결국 요청이 들어올 때 서버에서 `params`를 통해 불러올 마크다운 파일을 가져온 다음,
+그제서야 HTML로 컴파일하여 페이지를 완성합니다. 그 전까지 미리 렌더링된 포스트 페이지는 존재하지 않습니다.
+정확환 확인을 원한다면 직접 빌드해보면 됩니다. 역시 `/blog/[slug]` 페이지 하나만 빌드됩니다.
+
+```bash
+Route (app)                                Size     First Load JS
+┌ ○ /                                      144 B          79.2 kB
+├ λ /blog/[slug]                           144 B          79.2 kB
+├ ○ /favicon.ico                           0 B                0 B
+└ ○ /icon.png                              0 B                0 B
+```
+
+불특정 다수가 제 포스트를 보기 위해 링크를 누를 때마다 매번 똑같은 렌더링 과정을 거치는 것은 비효율적입니다.
+아무래도 컴파일 결과를 캐싱하거나, 각 포스트를 위한 페이지를 미리 렌더링할 필요가 있을 것 같습니다.
+아직까지 제 마크다운 파일이 빌드한 이후에 실시간으로 변경될 일은 생각하고 있지 않기 때문에,
+이 페이지가 *Static Rendering*을 할 수 있게 수정해보도록 하겠습니다.
+
+*Static Rendering*을 하기 위해서는 미리 렌더링 할 경로들의 목록이 필요합니다.
+그리고 해당 정보를 알려주기 위해서는 `generateStaticParams` 함수를 `export`함과 동시에 경로들의 이름을 반환하여야 합니다.
+이제 `params.slug`에 들어갈 마크다운 파일의 제목들을 `fs`의 `readdirSync` 함수를 활용해
+가져와봅시다.
+
+```tsx
+export async function generateStaticParams() {
+  const files = readdirSync(MD_DIR); // 마크다운 파일이 모여있는 디렉터리에서 파일 목록 가져오기
+
+  return files
+    .filter((file) => file.endsWith(".mdx")) // .mdx 확장자 파일만
+    .map((file) => ({
+      slug: file.substring(0, file.lastIndexOf(".")), // 확장자 제외한 파일 이름
+    }));
+}
+```
+
+이제 빌드를 해보면 마크다운으로 작성한 각각의 포스트에 대해 페이지를 정적으로 생성합니다.
+
+```bash
+Route (app)                                              Size     First Load JS
+┌ ○ /                                                    144 B          79.2 kB
+├ ● /blog/[slug]                                         144 B          79.2 kB
+├   ├ /blog/how-to-build-this-blog-with-next-js-and-mdx
+├   ├ /blog/post1
+├   └ /blog/post2
+├ ○ /favicon.ico                                         0 B                0 B
+└ ○ /icon.png                                            0 B                0 B
+```
+
+## 포스트 기능을 추가해보자
+
+이제 웹페이지가 기본적인 블로그 포스트로써의 역할은 하게 되었습니다. 하지만 분명 무언가 부족합니다.
+이미 다른 블로그 서비스, 깃허브 마크다운, 노션 등에 익숙해져서 그런걸까요? 이것저것 기능을 더 추가하고 싶은 기분입니다.
+
+### Frontmatter 메타데이터 사용하기
+
+마크다운 문서 속 내용만으로 포스트를 완성하기에는 충분하지 않습니다.
+우선 제목이 없는 포스트는 본 적이 없습니다. 그리고 필요에 따라 부제나 태그, 저자 정보도 제목 아래에 같이 나오기도 합니다.
+이렇듯 포스트의 내용에 속하지는 않지만 포스트에 대한 정보를 제공하는 **메타데이터**를 어디에 잠시 놔두었다가 꺼내서 활용하면
+좋을 것 같습니다. 메타데이터를 보관하기 위해 *JSON*이나 데이터베이스를 활용해도 좋겠지만, 마크다운 파일 자체에 기록되어있다면 가장 불러오기 편할 겁니다.
+
+*MDX*는 기본적으로 `import`/`export` 구문으로 일컬어지는 *ESModule*을 지원합니다.
+이 말은 아래처럼 mdx 파일에서 메타데이터를 내보내서 다른 페이지에서 활용할 수 있다는 겁니다.
+
+```js
+export const title = "이 블로그를 어떻게 만들었나";
+```
+
+```tsx
+// page.tsx
+import { title } from "./post.mdx";
+```
+
+하지만 저는 `@next/mdx`를 사용하지 않는지라, 저런 형태로 직접 가져오는 방식은 사용할 수 없습니다.
+다행히도, *Frontmatter*를 활용한다면 다른 양식으로 메타데이터를 저장하고, MDX 문서를 HTML로 컴파일 시 함꼐 가져올 수 있습니다.
+
+*Frontmatter*는 _YAML_ 형태로 메타데이터를 기록할 수 있습니다. 파일 최상단에 다음과 같이 기록합니다.
+
+```md
+---
+title: 이 블로그를 어떻게 만들었나
+subtitle: (feat. Next.js 13 & MDX)
+tag:
+  - Next.js 13
+  - MDX
+  - blog
+  - Frontend
+  - React
+  - SSG
+---
+
+# 목차
+
+...
+```
+
+기존 코드에서 `compileMDX` 함수에 `parseFrontmatter: true` 옵션을 전달하면, 컴파일 시 메타데이터를 추출할 수 있습니다.
+
+```tsx
+// page.tsx
+interface BlogPostMetadata {
+  title: string;
+  subtitle: string;
+  tag: string[];
+}
+
+export default async function BlogPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = params;
+  const markdown = readFileSync(path.resolve(MD_DIR, `${slug}.mdx`), {
+    encoding: "utf-8",
+  });
+  const { content, frontmatter: metadata } = await compileMDX<BlogPostMetadata>(
+    {
+      source: markdown,
+      options: {
+        parseFrontmatter: true,
+      },
+    }
+  );
+
+  return (
+    <main>
+      <section>
+        <h1>{metadata.title}</h1>
+        <h2>{metadata.subtitle}</h2>
+        <div>
+          {metadata.tag && metadata.tag.map((t) => <span key={t}>{t}</span>)}
+        </div>
+      </section>
+      <article>{content}</article>
+    </main>
+  );
+}
+```
+
+### 마크다운 파일에 컴포넌트 사용하기
+
+MDX에서는 외부 JSX 코드를 가져와 사용할 수 있습니다. 기본적으로 `import`문으로 쉽게 가져올 수도 있으나, 아예 컴파일 하는 동안 '이 컴포넌트를 사용할 거야'라고 지정해줄 수도 있습니다.
+이번 포스트에서는 간단한 콜아웃 컴포넌트를 작성해 사용해보았습니다.
+
+```tsx
+import {
+  CheckCircleIcon,
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+  XCircleIcon,
+} from "@heroicons/react/24/outline";
+import { ComponentType, ReactNode } from "react";
+
+interface CalloutProps {
+  children?: ReactNode;
+  type?: CalloutType;
+  colored?: boolean;
+}
+type CalloutType = "info" | "success" | "warning" | "error";
+interface CalloutStyle {
+  alert: `alert-${CalloutType}`;
+  icon: `text-${CalloutType}`;
+}
+
+const CalloutStyleMap: Record<CalloutType, CalloutStyle> = {
+  info: {
+    alert: "alert-info",
+    icon: "text-info",
+  },
+  success: {
+    alert: "alert-success",
+    icon: "text-success",
+  },
+  warning: {
+    alert: "alert-warning",
+    icon: "text-warning",
+  },
+  error: {
+    alert: "alert-error",
+    icon: "text-error",
+  },
+};
+const CalloutTypeIconMap: Record<
+  CalloutType,
+  ComponentType<{ className?: string }>
+> = {
+  info: InformationCircleIcon,
+  error: XCircleIcon,
+  warning: ExclamationTriangleIcon,
+  success: CheckCircleIcon,
+};
+
+export default function Callout({
+  children,
+  type = "info",
+  colored = false,
+}: CalloutProps) {
+  const IconComponent = CalloutTypeIconMap[type];
+  const style = CalloutStyleMap[type];
+  return (
+    <aside
+      className={`alert shadow ${colored ? style.alert : ""} flex flex-row`}
+    >
+      <IconComponent
+        className={`w-8 min-w-[2rem] min-h-[2rem] h-8 ${
+          colored ? "" : style.icon
+        }`}
+      ></IconComponent>
+      <span>{children}</span>
+    </aside>
+  );
+}
+```
+
+그리고 이 컴포넌트를 `compileMDX`의 옵션에 넣으면 자유롭게 MDX 파일 내에서 사용할 수 있습니다.
+
+```tsx
+const { content } = await compileMDX<BlogPostMetadata>({
+  source: markdown,
+  components: {
+    Callout,
+  },
+});
+```
+
+아래는 간단한 예시입니다!
+
+```jsx
+<Callout colored type="warning">
+  경고!
+</Callout>
+```
+
+<Callout colored type="warning">
+  경고!
+</Callout>
+
+### MDX Plugin을 붙이기
+
+MDX는 기본적으로 표준 마크다운 문법(CommonMark)만 지원합니다.
+반면에 깃허브([GFM](https://github.github.com/gfm/)), 또는 깃랩([GLFM](https://docs.gitlab.com/ee/user/markdown.html))은
+추가적으로 테이블을 작성하거나, 체크박스를 만드는 등 더 많은 블록과 인라인을 사용할 수 있습니다.
+또한 대부분의 블로그는 맨 위에 목차가 제공됩니다. 이는 실제 마크다운의 내용에 기반하므로 미리 메타데이터로 만들기보다는 컴파일할 때
+생성해주면 좋지 않을까요?
+
+MDX는 기존 마크다운에 추가적인 기능을 더할 수 있도록 플러그인을 지원합니다.
+주로 remark와 rehype를 위한 플러그인을 그대로 사용하게 됩니다.
+이는 MDX가 내부적으로 [unified.js에 remark와 rehype를 연결해서 사용](https://mdxjs.com/packages/mdx/#architecture)하기 때문입니다.
+remark와 rehype는 둘 다 텍스트 형식을 AST(Abstract Syntax Tree)로 파싱하고 다시 텍스트 형태로 컴파일 해주는 전처리기입니다.
+remark는 마크다운 형식의 텍스트에, rehype는 HTML 형식의 텍스트에 관여합니다.
+이 과정에서 플러그인은 각 AST를 변형하여 원하는 기능을 추가해 줄 수 있게 됩니다.
+MDX는 unified.js를 통해 마크다운 텍스트를 마크다운 AST(mdast)로, 또 이것을 HTML AST(hast)로, 마지막으로 HTML 텍스트로 변환하는 [전체 과정을 엮어줍니다](https://github.com/mdx-js/mdx/blob/main/packages/mdx/lib/core.js#L116).
+
+이 글을 작성함과 동시에 필요한 기능들을 추가하면서 다음 플러그인들을 적용되었습니다.
+
+- `remark-gfm`: 깃허브의 마크다운 확장인 Github Flavored Markdown의 기능을 추가해줍니다.
+- `remark-toc`: 헤딩을 바탕으로 목차를 자동으로 생성해줍니다
+- `rehype-slug`: 헤딩에 id를 자동으로 생성해줍니다. 이로써 아래 URL처럼 앵커(`#anchor`)를 붙여 특정 헤딩으로 바로 접근할 수 있게 됩니다.
+
+  ```plain
+  https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL#anchor
+  ```
+
+- `rehype-add-classes`: 커스텀 스타일 적용을 시도하느라 적용했습니다. 다만, 해당 플러그인이 유지보수되고있지 않아 보안 이슈가 있고,
+  개인적으로 살짝 변경하고픈 부분이 있어 따로 설치하진 않고 코드만 가져왔습니다.
+- `rehype-autolink-headings`: `rehype-slug`에 더해, 헤딩에 자동으로 자기자신을 가리키는 URL을 담은 링크를 생성해줍니다.
+  원하는 동작을 커스텀하기 위해서 시행착오가 많았던 부분인데, 여기에 대해선 [아래](#오토링크-기능-완성하기)에서 곧 다루겠습니다.
+- `rehype-prism-plus`: 마크다운 내 코드 블록에 구문 하이라이팅(syntax highlighting)을 제공해줍니다. 원하는 [테마](https://github.com/PrismJS/prism-themes)를 다운로드해 스타일을 변경해줄 수도 있습니다.
+
+### 오토링크 기능 완성하기
+
+`rehype-autolink-headings`를 적용한 것은 깃허브 마크다운이나, Next.js 문서처럼 헤딩 옆에 체인 모양의 아이콘이 나타나고,
+이를 클릭하여 해당 헤딩으로 바로 이어지는 링크를 얻어내기를 기대했기 때문입니다.
+하지만 막상 플러그인을 적용해보면 언뜻 보기에는 아무 변화가 없어보입니다.
+여기서 <kbd className="kbd">F12</kbd>를 눌러 개발자 도구를 연 후 요소를 뜯어보면
+실제로는 헤딩 아래에 `<a />` 태그가 생겼습니다.
+
+```html
+<h3 id="mdx로-마크다운-문서-가져오기">
+  <a aria-hidden="true" tabindex="-1" href="#mdx로-마크다운-문서-가져오기"
+    ><span class="icon icon-link"></span></a
+  >MDX로 마크다운 문서 가져오기
+</h3>
+```
+
+위 html 코드를 보면 알 수 있듯, 기본적으로 헤딩 텍스트의 앞에 앵커가 만들어지고, 그 안은 `<span class="icon icon-link"></span>`이라는 기본 컨텐츠로 채워집니다.
+지금은 해당 `span` 태그에 적용될 아이콘이 없어 비어있는 것입니다.
+
+그렇다면 이제부터 해야 할 일은 플러그인의 옵션과 CSS 스타일 적용으로 원하는 기능을 완성하는 것입니다. 다음 항목들을 목표로 세워두었습니다.
+
+1. 개인적으로 Next.js 문서처럼 헤딩 우측에 아이콘이 나타나는 것을 좋아합니다. 아이콘이 텍스트 우측에 나타나도록 하겠습니다.
+2. 기본 컨텐츠를 변경해 svg 아이콘을 사용하려 합니다.
+
+1번 목표 달성을 위해 우선 옵션의 `behavior`를 `append`로 변경해주겠습니다.
+
+```tsx
+[rehypeAutolinkHeadings, { behavior: "append" }],
+```
+
+문제는 2번 목표입니다. 아이콘을 집어넣기 위한 `content` 옵션을 사용해야 하는데, 여기에 어려움이 있습니다.
+JSX, 내지는 html 태그를 사용할 수 있다면 좋겠지만, 플러그인은 html 텍스트가 아니라 hast인 상태를 조작하기 때문에
+옵션값도 hast 형식을 받습니다.
+약간 귀찮지만, `hastscript`를 활용해 svg 아이콘을 표현해주겠습니다. 해당 아이콘 원본은 [heroicons](https://heroicons.com/)에서 가져왔습니다.
+
+```ts
+import { s } from "hastscript";
+
+export default function PaperClipIcon() {
+  return s(
+    "svg",
+    {
+      xmlns: "http://www.w3.org/2000/svg",
+      fill: "none",
+      viewBox: "0 0 24 24",
+      "stroke-width": "1.5",
+      stroke: "currentColor",
+    },
+    s("path", {
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round",
+      d: "M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13",
+    })
+  );
+}
+```
+
+이 아이콘을 옵션에 잘 집어넣어줍시다.
+
+```tsx
+[rehypeAutolinkHeadings, { behavior: "append", content: PaperClipIcon }],
+```
+
+아래는 결과 이미지입니다.
+![An icon for autolink is now visible.](/images/how-to-build-this-blog-with-next-js-and-mdx/autolink-icon.png)
+
+아이콘을 넣어준다는 목적은 달성했습니다. 다만 아이콘이 너무 크게 나옵니다. 이제 스타일을 적용해 아이콘을 다듬어줍시다. 현재 페이지 스타일링을 위한 CSS 프레임워크로 *Tailwind CSS*를 사용하고 있습니다.
+위의 `hastscript`를 활용한 svg 아이콘은 Next.js에서 페이지를 렌더링하기 전, MDX가 컴파일되는 과정에서 html 텍스트로 먼저 컴파일되기 때문에 `class`를 붙여 Tailwind 스타일을 넣어주는 것도 가능할 것입니다.
+
+```ts
+export default function PaperClipIcon() {
+  return s(
+    "svg.w-4.h-4.inline-block.absolute",
+    ...
+  );
+}
+```
+
+![An icon for autolink now appends next to heading text.](/images/how-to-build-this-blog-with-next-js-and-mdx/autolink-icon-align.png)
+
+아이콘이 계속 헤딩 옆에 위치하는 것은 살짝 부족한 기분입니다. 헤딩에 마우스를 올릴 때 아이콘이 나타나도록 해주고 싶은데, 이는 svg에만 스타일을 추가해준다고 되는 일은 아닙니다.
+Tailwind의 group을 활용해서 동작을 엮어주고 싶기 때문에, `rehype-add-classes`를 사용했습니다. 헤딩에는 `group/headings`를 추가하여 그룹을 지정해주고, svg에는 `group-hover/headings:opacity-100`와 `opacity-0`를 추가하여
+평소에는 보이지 않다가 헤딩에 hover 이벤트가 발생하면 나타나도록 지정했습니다. 덤으로 `transition-opacity`로 간단한 트랜지션도 넣어주면 완성입니다.
+
+![An icon for autolink now appends next to heading text.](/images/how-to-build-this-blog-with-next-js-and-mdx/autolink-complete.gif)
+
+# 결론
+
+블로그를 쓰는 이유를 알 것 같습니다. 하나의 기술적인 주제에 대해 이렇게 길게 작성해본 적이 없었는데, 아무래도 머릿속 지식을 글로 표현하기 위해 용어나 개념을 확실히 집고 넘어가게 되는 면이 있는 것 같습니다.
+예전부터 틈틈히 블로그를 작성해온 주변 지인들이 조금 부러워지기도 합니다.
+
+Next.js에 대한 첫 인상은 상당히 좋았습니다. 옛날에 React 위에 라우터나 스타일 등 여러 추가 기능을 담당하는
+각종 라이브러리를 직접 찾아서 적용해주던 것과는 달리 Next.js가 여러모로 해결해주는 것이 편했습니다.
+
+무엇보다 SSR에 대한 경험이 너무나도 좋아 놀라웠습니다.
+군 복무 중 Spring을 다루던 때에 JSP 템플릿에 JQuery를 붙여서 개발하던 것이 기억이 납니다.
+군대라는 환경에서 오는 보안 절차 / 기술 도입 지연과 같은 근본적인 문제로 최신 스택을 자유롭게 사용하지 못하는 상황에서
+사용하던 IDE도 프론트엔드 코드 작성에 크게 도움을 주지 못했기에 아쉬운 부분이었습니다.
+특히 Java와 Javascript 코드가 혼재된 옛날 JSP 파일을 읽어내며 유지보수해야했던 당시 해당 코드에 적응하느라 고생했었습니다.
+이 때문에 잠깐 '개발 편의성에 있어 CSR이 더 낫다'는 오해를 품고 있었다가, Next.js를 사용하면서 생각을 고쳤습니다.
+익숙한 React의 함수형 컴포넌트를 그대로 작성했는데 SSR을 해준다니!
+물론 이것을 위해 다른 구문이나 API 등 학습해야할 요소가 추가되긴 했어도, 다른 언어와 섞어쓰면서 생기는 괴리감보다는 나은 것 같습니다.
+
+아쉬운 점이 없었던 건 아닙니다. 아무래도 File-based Routing의 특성 상 URL 설계에 따라 기본적인 폴더 구조가 잡히게 되어, 평소 사용하던 대로 도메인 별로 분리하는 식의 폴더 구조를 그대로 사용할 수는 없었습니다.
+그렇지만 이건 본인만의 습관에 의한 아쉬움이다 보니 앞으로 더 사용해보면서 익숙해지면서 자신만의 폴더 구조를 고민해봐야겠습니다.
+
+앞으로도 시간이 나는 대로 이 홈페이지와 더불어 블로그 포스팅 기능도 업데이트하고, 또 업데이트 과정을 포스팅을 해보겠습니다.
+개발하고 싶은 부분이 많기도 하고, 이번에 개발한 부분에서도 개선해야할 부분이 계속 생각납니다.
